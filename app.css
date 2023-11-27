@@ -43,9 +43,9 @@ button {
   cursor: pointer;
 }
 
-/*navigation bar*/
+/*top bar*/
 
-nav {
+header {
   background-color: var(--nav-bar-grey-300);
   display: flex;
   gap: 0.5rem;
@@ -225,8 +225,8 @@ nav {
   background: var(--nav-bar-grey-50);
 }
 
-.nav-bar__notification-btn:focus, /*-visible*/
-.nav-bar__menu-btn:focus {
+.nav-bar__notification-btn:focus-visible,
+.nav-bar__menu-btn:focus-visible {
   border-radius: 0.5rem;
   outline: 2px solid var(--states-focused);
   outline-offset: 1px;
@@ -319,7 +319,7 @@ nav {
   text-decoration: none;
   padding: 0.38rem 0.76rem;
 }
-/* end of navbar */
+/* end of top bar */
 
 .overlay {
   background-color: transparent;
@@ -711,7 +711,7 @@ main {
 /* end of setup guide and steps */
 
 @media (min-width: 900px) {
-  nav {
+  header {
     justify-content: space-between;
     padding: 0.75rem 1rem;
   }
