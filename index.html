@@ -1,0 +1,805 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shopify Admin</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./app.css" />
+  </head>
+  <body>
+    <nav class="nav-bar">
+      <a href="https://shopify.com" class="nav-bar__logo">
+        <img
+          src="https://crushingit.tech/hackathon-assets/shopify-icon.svg"
+          alt="A shopping bag featuring a prominent letter 'S' indicating the shopify logo"
+        />
+      </a>
+
+      <label class="nav-bar__search-bar" aria-label="search through shopify">
+        <svg
+          role="presentation"
+          xmlns="http://www.w3.org/2000/svg"
+          width="20"
+          height="20"
+          viewBox="0 0 20 20"
+          fill="none"
+        >
+          <path
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            d="M12.3226 13.3833C11.3996 14.0841 10.2484 14.5 9 14.5C5.96243 14.5 3.5 12.0376 3.5 9C3.5 5.96243 5.96243 3.5 9 3.5C12.0376 3.5 14.5 5.96243 14.5 9C14.5 10.2484 14.0841 11.3996 13.3833 12.3226L16.2803 15.2197C16.5732 15.5126 16.5732 15.9874 16.2803 16.2803C15.9874 16.5732 15.5126 16.5732 15.2197 16.2803L12.3226 13.3833ZM13 9C13 11.2091 11.2091 13 9 13C6.79086 13 5 11.2091 5 9C5 6.79086 6.79086 5 9 5C11.2091 5 13 6.79086 13 9Z"
+            fill="#B5B5B5"
+          />
+        </svg>
+        <input type="search" name="search" placeholder="Search" />
+      </label>
+
+      <div class="nav-bar__btns">
+        <button
+          aria-expanded="false"
+          aria-controls="alert-modal"
+          aria-haspopup="true"
+          aria-label="toggle notifications"
+          class="nav-bar__notification-btn"
+        >
+          <svg
+            role="presentation"
+            width="41"
+            height="40"
+            viewBox="0 0 21 20"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M7.75203 14.4239L5.3061 14.1427C3.45144 13.9295 2.92542 11.4844 4.52838 10.5274L4.5933 10.4886C5.466 9.96761 6.00045 9.02609 6.00045 8.00969V7.5C6.00045 5.01472 8.01517 3 10.5005 3C12.9857 3 15.0005 5.01472 15.0005 7.5V8.00969C15.0005 9.02609 15.5349 9.96761 16.4076 10.4886L16.4725 10.5274C18.0755 11.4844 17.5495 13.9295 15.6948 14.1427L13.152 14.435V14.8C13.152 16.2912 11.9432 17.5 10.452 17.5C8.96086 17.5 7.75203 16.2912 7.75203 14.8V14.4239ZM11.652 14.5H9.25203V14.8C9.25203 15.4627 9.78929 16 10.452 16C11.1148 16 11.652 15.4627 11.652 14.8V14.5ZM8.50045 13H12.5005L15.5235 12.6525C15.953 12.6032 16.0748 12.0369 15.7036 11.8153L15.6387 11.7766C15.5591 11.7291 15.4815 11.6793 15.4057 11.6273C15.2506 11.521 15.1036 11.4055 14.9651 11.2818C14.9405 11.2598 14.9162 11.2377 14.8922 11.2152C14.0144 10.395 13.5005 9.23833 13.5005 8.00969V7.5C13.5005 5.84315 12.1573 4.5 10.5005 4.5C8.8436 4.5 7.50045 5.84315 7.50045 7.5V8.00969C7.50045 9.23833 6.98651 10.395 6.10871 11.2152C6.08469 11.2377 6.06039 11.2598 6.03583 11.2818C5.89734 11.4055 5.75029 11.521 5.59523 11.6273C5.51945 11.6793 5.44176 11.7291 5.36222 11.7766L5.29729 11.8153C4.9261 12.0369 5.0479 12.6032 5.47739 12.6525L8.50045 13Z"
+              fill="#fff"
+            />
+          </svg>
+        </button>
+        <div
+          aria-labelledby="alert-title"
+          aria-modal="true"
+          class="alert-pop-up"
+          id="alert-modal"
+          role="dialog"
+        >
+          <div class="alert-pop-up__header">
+            <h3 id="alert-title">Alerts</h3>
+            <div class="alert-pop-up__header__btn-grp">
+              <button aria-label="Select all notifications">
+                <svg
+                  role="presentation"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 20 20"
+                  fill="none"
+                >
+                  <path
+                    d="M13.2803 9.03033C13.5732 8.73744 13.5732 8.26256 13.2803 7.96967C12.9874 7.67678 12.5126 7.67678 12.2197 7.96967L9.25 10.9393L8.03033 9.71967C7.73744 9.42678 7.26256 9.42678 6.96967 9.71967C6.67678 10.0126 6.67678 10.4874 6.96967 10.7803L8.71967 12.5303C9.01256 12.8232 9.48744 12.8232 9.78033 12.5303L13.2803 9.03033Z"
+                    fill="#616161"
+                  />
+                  <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10ZM15.5 10C15.5 13.0376 13.0376 15.5 10 15.5C6.96243 15.5 4.5 13.0376 4.5 10C4.5 6.96243 6.96243 4.5 10 4.5C13.0376 4.5 15.5 6.96243 15.5 10Z"
+                    fill="#616161"
+                  />
+                </svg>
+              </button>
+              <button aria-label="Filter notifications">
+                <svg
+                  role="presentation"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 20 20"
+                  fill="none"
+                >
+                  <path
+                    d="M3 6C3 5.58579 3.33579 5.25 3.75 5.25H16.25C16.6642 5.25 17 5.58579 17 6C17 6.41421 16.6642 6.75 16.25 6.75H3.75C3.33579 6.75 3 6.41421 3 6Z"
+                    fill="#616161"
+                  />
+                  <path
+                    d="M6.75 14C6.75 13.5858 7.08579 13.25 7.5 13.25H12.5C12.9142 13.25 13.25 13.5858 13.25 14C13.25 14.4142 12.9142 14.75 12.5 14.75H7.5C7.08579 14.75 6.75 14.4142 6.75 14Z"
+                    fill="#616161"
+                  />
+                  <path
+                    d="M5.5 9.25C5.08579 9.25 4.75 9.58579 4.75 10C4.75 10.4142 5.08579 10.75 5.5 10.75H14.5C14.9142 10.75 15.25 10.4142 15.25 10C15.25 9.58579 14.9142 9.25 14.5 9.25H5.5Z"
+                    fill="#616161"
+                  />
+                </svg>
+              </button>
+            </div>
+          </div>
+          <p>Alerts about your store and account will show here</p>
+        </div>
+
+        <button
+          aria-expanded="false"
+          aria-controls="navigation-menu"
+          aria-haspopup="true"
+          class="nav-bar__menu-btn"
+        >
+          <span class="nav-bar__menu-btn__title">Davii Collections</span>
+          <span class="nav-bar__menu-btn__logo">DC</span>
+        </button>
+        <ul
+          aria-label="Davii Collections"
+          class="menu-list"
+          id="navigation-menu"
+          role="menu"
+        >
+          <li class="menu-list__header">
+            <a href="https://admin.shopify.com" role="menuitem">
+              <div>
+                <span class="merchant-initials">DC</span>
+                <h3 class="merchant-name">Davii Collections</h3>
+              </div>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 16 16"
+                fill="none"
+              >
+                <path
+                  d="M13.3332 4L5.99984 11.3333L2.6665 8"
+                  stroke="#303030"
+                  stroke-width="1.33333"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </a>
+          </li>
+          <li class="menu-list-items">
+            <a href="https://admin.shopify.com" role="menuitem">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 20 20"
+                fill="none"
+              >
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M13.257 3H6.74302C6.35944 3 5.9971 3.17611 5.76012 3.47772L3.37394 6.51468C3.13169 6.823 3 7.20375 3 7.59586V8.25C3 9.31867 3.60958 10.245 4.5 10.7001V15.25C4.5 16.2165 5.2835 17 6.25 17H13.75C14.7165 17 15.5 16.2165 15.5 15.25V10.7001C16.3904 10.245 17 9.31867 17 8.25V7.76879C17 7.26465 16.8307 6.77511 16.5192 6.3787L14.2399 3.47772C14.0029 3.17611 13.6406 3 13.257 3ZM13 15.5H13.75C13.8881 15.5 14 15.3881 14 15.25V11C13.212 11 12.5014 10.6686 12 10.1375C11.4986 10.6686 10.788 11 10 11C9.21199 11 8.50138 10.6686 8 10.1375C7.49862 10.6686 6.78801 11 6 11V15.25C6 15.3881 6.11193 15.5 6.25 15.5H10V13C10 12.4477 10.4477 12 11 12H12C12.5523 12 13 12.4477 13 13V15.5ZM6 9.5H5.75C5.05964 9.5 4.5 8.94036 4.5 8.25V7.59586C4.5 7.53985 4.51881 7.48545 4.55342 7.44141L6.86453 4.5H13.1355L15.3397 7.30543C15.4436 7.43757 15.5 7.60075 15.5 7.76879V8.25C15.5 8.94036 14.9404 9.5 14.25 9.5H14C13.3096 9.5 12.75 8.94036 12.75 8.25V7.75C12.75 7.33579 12.4142 7 12 7C11.5858 7 11.25 7.33579 11.25 7.75V8.25C11.25 8.94036 10.6904 9.5 10 9.5C9.30964 9.5 8.75 8.94036 8.75 8.25V7.75C8.75 7.33579 8.41421 7 8 7C7.58579 7 7.25 7.33579 7.25 7.75V8.25C7.25 8.94036 6.69036 9.5 6 9.5Z"
+                  fill="#303030"
+                />
+              </svg>
+              All Stores
+            </a>
+          </li>
+          <span class="horizontal-line"></span>
+          <li class="menu-list-items">
+            <a href="https://admin.shopify.com" role="menuitem">Help Center</a>
+          </li>
+          <li class="menu-list-items">
+            <a href="https://admin.shopify.com" role="menuitem">Changelog</a>
+          </li>
+          <li class="menu-list-items">
+            <a href="https://admin.shopify.com" role="menuitem"
+              >Community forums</a
+            >
+          </li>
+          <li class="menu-list-items">
+            <a href="https://admin.shopify.com" role="menuitem"
+              >Hire a Shopify Partner</a
+            >
+          </li>
+          <li class="menu-list-items">
+            <a href="https://admin.shopify.com" role="menuitem"
+              >Keyboard shortcuts</a
+            >
+          </li>
+          <span class="horizontal-line"></span>
+          <li class="menu-list-items">
+            <a
+              href="https://admin.shopify.com"
+              role="menuitem"
+              style="flex-direction: column; align-items: flex-start"
+            >
+              <h3>David Micheal</h3>
+              <p style="color: #616161">davidmicheal@gmail.com</p>
+            </a>
+          </li>
+          <li class="menu-list-items">
+            <a href="https://admin.shopify.com" role="menuitem"
+              >Manage account</a
+            >
+          </li>
+          <li class="menu-list-items">
+            <a href="https://admin.shopify.com" role="menuitem">Log out</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="overlay hidden"></div>
+
+    <div class="main-body-section">
+      <section
+        class="plan-banner"
+        aria-label="Information banner about trial extention"
+      >
+        <h2 class="plan-banner__title">
+          Extend your trial for $1/month for 3 months on select plans.
+        </h2>
+        <a
+          href="https://shopify.com/pricing"
+          class="plan-banner__btn--select-plan"
+          >Select a plan</a
+        >
+        <button aria-label="close plan banner" class="plan-banner__btn--close">
+          <svg
+            role="presentation"
+            width="41"
+            height="40"
+            viewBox="0 0 21 20"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M14.4697 15.0303C14.7626 15.3232 15.2374 15.3232 15.5303 15.0303C15.8232 14.7374 15.8232 14.2626 15.5303 13.9697L11.5607 10L15.5303 6.03033C15.8232 5.73744 15.8232 5.26256 15.5303 4.96967C15.2374 4.67678 14.7626 4.67678 14.4697 4.96967L10.5 8.93934L6.53033 4.96967C6.23744 4.67678 5.76256 4.67678 5.46967 4.96967C5.17678 5.26256 5.17678 5.73744 5.46967 6.03033L9.43934 10L5.46967 13.9697C5.17678 14.2626 5.17678 14.7374 5.46967 15.0303C5.76256 15.3232 6.23744 15.3232 6.53033 15.0303L10.5 11.0607L14.4697 15.0303Z"
+              fill="#fff"
+            />
+          </svg>
+        </button>
+      </section>
+
+      <main>
+        <section class="setup-guide" aria-label="Setup guide">
+          <div class="setup-guide__wrapper">
+            <h2 class="setup-guide__title">Setup guide</h2>
+            <p class="setup-guide__description">
+              Use this personalized guide to get your store up and running.
+            </p>
+            <div class="setup-guide__progress">
+              <span class="setup-guide__progress__text">0 / 5 completed</span>
+              <div class="setup-guide__progress__bar">
+                <span class="setup-guide__progress__bar--filled"></span>
+              </div>
+            </div>
+          </div>
+          <button
+            aria-label="toggle setup guide"
+            aria-expanded="false"
+            aria-controls="steps"
+            class="setup-guide__collapse-btn"
+          >
+            <svg
+              role="presentation"
+              width="41"
+              height="40"
+              viewBox="0 0 21 20"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M6.21967 8.46967C6.51256 8.17678 6.98744 8.17678 7.28033 8.46967L10.75 11.9393L14.2197 8.46967C14.5126 8.17678 14.9874 8.17678 15.2803 8.46967C15.5732 8.76256 15.5732 9.23744 15.2803 9.53033L11.2803 13.5303C10.9874 13.8232 10.5126 13.8232 10.2197 13.5303L6.21967 9.53033C5.92678 9.23744 5.92678 8.76256 6.21967 8.46967Z"
+                fill="#4A4A4A"
+              />
+            </svg>
+          </button>
+        </section>
+
+        <ol
+          aria-label="Setup guide instructions"
+          aria-orientation="vertical"
+          class="setup-steps"
+          id="steps"
+          role="tablist"
+        >
+          <li class="setup-steps__item setup-steps__item--active" tabindex="0">
+            <div class="setup-steps__item__div">
+              <span class="screen-reader-only" aria-live="polite"></span>
+              <button
+                role="checkbox"
+                aria-checked="false"
+                aria-label="Mark customize theme as completed"
+                class="setup-steps__item__checkbox"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="not-completed"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                >
+                  <circle
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="#8A8A8A"
+                    stroke-width="2.08333"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-dasharray="5 5"
+                  />
+                </svg>
+                <svg
+                  aria-hidden="true"
+                  class="checkmark hidden"
+                  width="40"
+                  height="40"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <circle cx="12" cy="12" r="10" fill="#303030"></circle>
+                  <path
+                    d="M17.2738 8.52629C17.6643 8.91682 17.6643 9.54998 17.2738 9.94051L11.4405 15.7738C11.05 16.1644 10.4168 16.1644 10.0263 15.7738L7.3596 13.1072C6.96908 12.7166 6.96908 12.0835 7.3596 11.693C7.75013 11.3024 8.38329 11.3024 8.77382 11.693L10.7334 13.6525L15.8596 8.52629C16.2501 8.13577 16.8833 8.13577 17.2738 8.52629Z"
+                    fill="#fff"
+                  ></path>
+                </svg>
+                <svg
+                  aria-hidden="true"
+                  class="loading-spinner hidden"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="40"
+                  height="40"
+                  viewBox="0 0 28 28"
+                  fill="none"
+                >
+                  <path
+                    d="M26 14C26 16.3734 25.2962 18.6935 23.9776 20.6668C22.6591 22.6402 20.7849 24.1783 18.5922 25.0866C16.3995 25.9948 13.9867 26.2324 11.6589 25.7694C9.33114 25.3064 7.19295 24.1635 5.51472 22.4853C3.83649 20.8071 2.6936 18.6689 2.23058 16.3411C1.76755 14.0133 2.00519 11.6005 2.91345 9.4078C3.8217 7.21509 5.35977 5.34094 7.33316 4.02236C9.30655 2.70379 11.6266 2 14 2"
+                    stroke="#1C181D"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+                <input type="checkbox" name="setup-process" tabindex="-1" />
+              </button>
+              <button
+                role="tab"
+                aria-selected="true"
+                aria-controls="setup-details-1"
+                class="setup-steps__item__label__btn"
+              >
+                <span class="setup-steps__item__label"
+                  >Customize your online store</span
+                >
+              </button>
+            </div>
+            <div
+              role="tabpanel"
+              class="setup-steps__item__details"
+              id="setup-details-1"
+            >
+              <p class="setup-steps__item__description">
+                Choose a theme and add your logo, colors, and images to reflect
+                your brand.
+                <span
+                  style="color: hsla(214, 100%, 41%, 1); font-size: 0.875rem"
+                  >Learn more</span
+                >
+              </p>
+              <a href="https://admin.shopify.com" class="setup-steps__item__btn"
+                >Customize theme</a
+              >
+            </div>
+            <img
+              class="setup-steps__item__img"
+              src="https://crushingit.tech/hackathon-assets/customise-store.png"
+              alt="painting a browser window with a brush, showing a palette of blue colours"
+            />
+          </li>
+          <li class="setup-steps__item" tabindex="0">
+            <div class="setup-steps__item__div">
+              <span class="screen-reader-only" aria-live="polite"></span>
+              <button
+                role="checkbox"
+                aria-checked="false"
+                aria-label="Mark add your first product as completed"
+                class="setup-steps__item__checkbox"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="not-completed"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                >
+                  <circle
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="#8A8A8A"
+                    stroke-width="2.08333"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-dasharray="5 5"
+                  />
+                </svg>
+                <svg
+                  aria-hidden="true"
+                  class="checkmark hidden"
+                  width="40"
+                  height="40"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <circle cx="12" cy="12" r="10" fill="#303030"></circle>
+                  <path
+                    d="M17.2738 8.52629C17.6643 8.91682 17.6643 9.54998 17.2738 9.94051L11.4405 15.7738C11.05 16.1644 10.4168 16.1644 10.0263 15.7738L7.3596 13.1072C6.96908 12.7166 6.96908 12.0835 7.3596 11.693C7.75013 11.3024 8.38329 11.3024 8.77382 11.693L10.7334 13.6525L15.8596 8.52629C16.2501 8.13577 16.8833 8.13577 17.2738 8.52629Z"
+                    fill="#fff"
+                  ></path>
+                </svg>
+                <svg
+                  aria-hidden="true"
+                  class="loading-spinner hidden"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="40"
+                  height="40"
+                  viewBox="0 0 28 28"
+                  fill="none"
+                >
+                  <path
+                    d="M26 14C26 16.3734 25.2962 18.6935 23.9776 20.6668C22.6591 22.6402 20.7849 24.1783 18.5922 25.0866C16.3995 25.9948 13.9867 26.2324 11.6589 25.7694C9.33114 25.3064 7.19295 24.1635 5.51472 22.4853C3.83649 20.8071 2.6936 18.6689 2.23058 16.3411C1.76755 14.0133 2.00519 11.6005 2.91345 9.4078C3.8217 7.21509 5.35977 5.34094 7.33316 4.02236C9.30655 2.70379 11.6266 2 14 2"
+                    stroke="#1C181D"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+                <input type="checkbox" name="setup-process" tabindex="-1" />
+              </button>
+              <button
+                role="tab"
+                aria-selected="false"
+                aria-controls="setup-details-2"
+                class="setup-steps__item__label__btn"
+              >
+                <span class="setup-steps__item__label"
+                  >Add your first product</span
+                >
+              </button>
+            </div>
+            <div
+              role="tabpanel"
+              class="setup-steps__item__details"
+              id="setup-details-2"
+            >
+              <p class="setup-steps__item__description">
+                Write a description, add photos, and set pricing for the
+                products you plan to sell.
+                <span
+                  style="color: hsla(214, 100%, 41%, 1); font-size: 0.875rem"
+                  >Learn more</span
+                >
+              </p>
+              <div class="setup-steps__item__btn-group">
+                <a
+                  href="https://admin.shopify.com"
+                  class="setup-steps__item__btn"
+                  >Add product</a
+                >
+                <a
+                  href="https://admin.shopify.com"
+                  class="setup-steps__item__btn--flat"
+                >
+                  Import product
+                </a>
+              </div>
+            </div>
+            <img
+              class="setup-steps__item__img"
+              src="https://crushingit.tech/hackathon-assets/product.png"
+              alt="a catalogue of shirt, sunglasses and shoe"
+            />
+          </li>
+          <li class="setup-steps__item" tabindex="0">
+            <div class="setup-steps__item__div">
+              <span class="screen-reader-only" aria-live="polite"></span>
+              <button
+                role="checkbox"
+                aria-checked="false"
+                aria-label="Mark add a custom domain as completed"
+                class="setup-steps__item__checkbox"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="not-completed"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                >
+                  <circle
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="#8A8A8A"
+                    stroke-width="2.08333"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-dasharray="5 5"
+                  />
+                </svg>
+                <svg
+                  aria-hidden="true"
+                  class="checkmark hidden"
+                  width="40"
+                  height="40"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <circle cx="12" cy="12" r="10" fill="#303030"></circle>
+                  <path
+                    d="M17.2738 8.52629C17.6643 8.91682 17.6643 9.54998 17.2738 9.94051L11.4405 15.7738C11.05 16.1644 10.4168 16.1644 10.0263 15.7738L7.3596 13.1072C6.96908 12.7166 6.96908 12.0835 7.3596 11.693C7.75013 11.3024 8.38329 11.3024 8.77382 11.693L10.7334 13.6525L15.8596 8.52629C16.2501 8.13577 16.8833 8.13577 17.2738 8.52629Z"
+                    fill="#fff"
+                  ></path>
+                </svg>
+                <svg
+                  aria-hidden="true"
+                  class="loading-spinner hidden"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="40"
+                  height="40"
+                  viewBox="0 0 28 28"
+                  fill="none"
+                >
+                  <path
+                    d="M26 14C26 16.3734 25.2962 18.6935 23.9776 20.6668C22.6591 22.6402 20.7849 24.1783 18.5922 25.0866C16.3995 25.9948 13.9867 26.2324 11.6589 25.7694C9.33114 25.3064 7.19295 24.1635 5.51472 22.4853C3.83649 20.8071 2.6936 18.6689 2.23058 16.3411C1.76755 14.0133 2.00519 11.6005 2.91345 9.4078C3.8217 7.21509 5.35977 5.34094 7.33316 4.02236C9.30655 2.70379 11.6266 2 14 2"
+                    stroke="#1C181D"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+                <input type="checkbox" name="setup-process" tabindex="-1" />
+              </button>
+              <button
+                role="tab"
+                aria-selected="false"
+                aria-controls="setup-details-3"
+                class="setup-steps__item__label__btn"
+              >
+                <span class="setup-steps__item__label"
+                  >Add a custom domain</span
+                >
+              </button>
+            </div>
+            <div
+              role="tabpanel"
+              class="setup-steps__item__details"
+              id="setup-details-3"
+            >
+              <p class="setup-steps__item__description">
+                Your current domain is 222219.myshopify.com but you can add a
+                custom domain to help customers find your online store.
+                <span
+                  style="color: hsla(214, 100%, 41%, 1); font-size: 0.875rem"
+                  >Learn more</span
+                >
+              </p>
+              <a href="https://admin.shopify.com" class="setup-steps__item__btn"
+                >Add domain</a
+              >
+            </div>
+            <img
+              class="setup-steps__item__img"
+              src="https://crushingit.tech/hackathon-assets/website.png"
+              alt="a website window illustration"
+            />
+          </li>
+          <li class="setup-steps__item" tabindex="0">
+            <div class="setup-steps__item__div">
+              <span class="screen-reader-only" aria-live="polite"></span>
+              <button
+                role="checkbox"
+                aria-checked="false"
+                aria-label="Mark name your store as completed"
+                class="setup-steps__item__checkbox"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="not-completed"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                >
+                  <circle
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="#8A8A8A"
+                    stroke-width="2.08333"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-dasharray="5 5"
+                  />
+                </svg>
+                <svg
+                  aria-hidden="true"
+                  class="checkmark hidden"
+                  width="40"
+                  height="40"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <circle cx="12" cy="12" r="10" fill="#303030"></circle>
+                  <path
+                    d="M17.2738 8.52629C17.6643 8.91682 17.6643 9.54998 17.2738 9.94051L11.4405 15.7738C11.05 16.1644 10.4168 16.1644 10.0263 15.7738L7.3596 13.1072C6.96908 12.7166 6.96908 12.0835 7.3596 11.693C7.75013 11.3024 8.38329 11.3024 8.77382 11.693L10.7334 13.6525L15.8596 8.52629C16.2501 8.13577 16.8833 8.13577 17.2738 8.52629Z"
+                    fill="#fff"
+                  ></path>
+                </svg>
+                <svg
+                  aria-hidden="true"
+                  class="loading-spinner hidden"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="40"
+                  height="40"
+                  viewBox="0 0 28 28"
+                  fill="none"
+                >
+                  <path
+                    d="M26 14C26 16.3734 25.2962 18.6935 23.9776 20.6668C22.6591 22.6402 20.7849 24.1783 18.5922 25.0866C16.3995 25.9948 13.9867 26.2324 11.6589 25.7694C9.33114 25.3064 7.19295 24.1635 5.51472 22.4853C3.83649 20.8071 2.6936 18.6689 2.23058 16.3411C1.76755 14.0133 2.00519 11.6005 2.91345 9.4078C3.8217 7.21509 5.35977 5.34094 7.33316 4.02236C9.30655 2.70379 11.6266 2 14 2"
+                    stroke="#1C181D"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+                <input type="checkbox" name="setup-process" tabindex="-1" />
+              </button>
+
+              <button
+                role="tab"
+                aria-selected="false"
+                aria-controls="setup-details-4"
+                class="setup-steps__item__label__btn"
+              >
+                <span class="setup-steps__item__label">Name your store</span>
+              </button>
+            </div>
+            <div
+              role="tabpanel"
+              class="setup-steps__item__details"
+              id="setup-details-4"
+            >
+              <p class="setup-steps__item__description">
+                Your temporary store name is currently Davii collections. The
+                store name appears in your admin and your online store.
+                <span
+                  style="color: hsla(214, 100%, 41%, 1); font-size: 0.875rem"
+                  >Learn more</span
+                >
+              </p>
+              <a href="https://admin.shopify.com" class="setup-steps__item__btn"
+                >Name store</a
+              >
+            </div>
+            <img
+              class="setup-steps__item__img"
+              src="https://crushingit.tech/hackathon-assets/name-store.png"
+              alt="A store's website homepage illustration"
+            />
+          </li>
+          <li class="setup-steps__item" tabindex="0">
+            <div class="setup-steps__item__div">
+              <span class="screen-reader-only" aria-live="polite"></span>
+              <button
+                role="checkbox"
+                aria-checked="false"
+                aria-label="Mark set up a payment provider as completed"
+                class="setup-steps__item__checkbox"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="not-completed"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                >
+                  <circle
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="#8A8A8A"
+                    stroke-width="2.08333"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-dasharray="5 5"
+                  />
+                </svg>
+                <svg
+                  aria-hidden="true"
+                  class="checkmark hidden"
+                  width="40"
+                  height="40"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <circle cx="12" cy="12" r="10" fill="#303030"></circle>
+                  <path
+                    d="M17.2738 8.52629C17.6643 8.91682 17.6643 9.54998 17.2738 9.94051L11.4405 15.7738C11.05 16.1644 10.4168 16.1644 10.0263 15.7738L7.3596 13.1072C6.96908 12.7166 6.96908 12.0835 7.3596 11.693C7.75013 11.3024 8.38329 11.3024 8.77382 11.693L10.7334 13.6525L15.8596 8.52629C16.2501 8.13577 16.8833 8.13577 17.2738 8.52629Z"
+                    fill="#fff"
+                  ></path>
+                </svg>
+                <svg
+                  aria-hidden="true"
+                  class="loading-spinner hidden"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="40"
+                  height="40"
+                  viewBox="0 0 28 28"
+                  fill="none"
+                >
+                  <path
+                    d="M26 14C26 16.3734 25.2962 18.6935 23.9776 20.6668C22.6591 22.6402 20.7849 24.1783 18.5922 25.0866C16.3995 25.9948 13.9867 26.2324 11.6589 25.7694C9.33114 25.3064 7.19295 24.1635 5.51472 22.4853C3.83649 20.8071 2.6936 18.6689 2.23058 16.3411C1.76755 14.0133 2.00519 11.6005 2.91345 9.4078C3.8217 7.21509 5.35977 5.34094 7.33316 4.02236C9.30655 2.70379 11.6266 2 14 2"
+                    stroke="#1C181D"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+                <input type="checkbox" name="setup-process" tabindex="-1" />
+              </button>
+              <button
+                role="tab"
+                aria-selected="false"
+                aria-controls="setup-details-5"
+                class="setup-steps__item__label__btn"
+              >
+                <span class="setup-steps__item__label"
+                  >Set up a payment provider</span
+                >
+              </button>
+            </div>
+            <div
+              role="tabpanel"
+              class="setup-steps__item__details"
+              id="setup-details-5"
+            >
+              <p class="setup-steps__item__description">
+                Choose a payment provider to start accepting payments. You’ll
+                need to create an account with the payment provider and set it
+                up with your Shopify store.
+                <span
+                  style="color: hsla(214, 100%, 41%, 1); font-size: 0.875rem"
+                  >Learn more</span
+                >
+              </p>
+              <a href="https://admin.shopify.com" class="setup-steps__item__btn"
+                >Set up payment</a
+              >
+            </div>
+            <img
+              class="setup-steps__item__img"
+              src="https://crushingit.tech/hackathon-assets/payment.png"
+              alt="A payment service window displaying an illustration of a Visa card"
+            />
+          </li>
+        </ol>
+      </main>
+    </div>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
